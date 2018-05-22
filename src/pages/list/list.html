@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Products</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-searchbar  [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+<!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+  
+<ion-list>
+  <ion-item ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <ion-thumbnail item-start>
+      <img src="https://amp.businessinsider.com/images/592f4169b74af41b008b5977-1334-1001.jpg">
+    </ion-thumbnail>
+    <h2> {{item.title}}</h2>
+    <p> {{item.note}} • 1988</p>
+    <button ion-button clear item-end>View</button>
+  </ion-item>
+</ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+</ion-content>
+ 
