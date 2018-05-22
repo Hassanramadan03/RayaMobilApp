@@ -1,2 +1,2 @@
 # RayaMobilApp
-this is the Mobile app of Raya
+this is the Mobile app of Raya corp
