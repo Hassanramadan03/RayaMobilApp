@@ -1,28 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Products</ion-title>
-  </ion-navbar>
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+    <ion-title>Lists</ion-title>
+  </button>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]='search'></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
-
 <ion-content>
-<ion-searchbar  [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
-<!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
-  
-<ion-list>
-  <ion-item ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-    <ion-thumbnail item-start>
-      <img src="https://amp.businessinsider.com/images/592f4169b74af41b008b5977-1334-1001.jpg">
-    </ion-thumbnail>
-    <h2> {{item.title}}</h2>
-    <p> {{item.note}} • 1988</p>
-    <button ion-button clear item-end>View</button>
-  </ion-item>
-</ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  <ion-list>
+    <accordion-list *ngFor="let item of items|filter:search ; let index= index"
+      [title]="item.title" textColor="#FFF" hasMargin="false"
+      headerColor="#0d2a51"
+      [expanded]="index=== 0">
+
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            ${{item.price}}
+
+          </ion-card-title>
+          <p text-wrap>
+            {{item.des}}
+          </p>
+        </ion-card-content>
+
+        <ion-buttons color="red" start>
+            <button (click)="go(item)" ion-button icon-only>
+              <ion-icon name="create"></ion-icon>
+            </button>
+            <button  color="danger" (click)="Delete(item)" ion-button icon-only>
+              <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-buttons>
+        
+      </ion-card>
+    </accordion-list>
+  </ion-list>
 </ion-content>
- 

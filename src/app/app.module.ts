@@ -1,39 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { SharedModule } from './shared.module';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { LoginPage } from "../pages/login/login";
-import { ProductPage } from "../pages/product/product";
+
+import { MODULES, PROVIDERS } from './app.imports';
+import { AuthService } from '../providers/authentication/authentication';
+import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
+    // App Core
     MyApp,
-    HomePage,
-    ListPage, 
-    LoginPage, 
-    ProductPage
   ],
   imports: [
-    BrowserModule,
+    MODULES,
     IonicModule.forRoot(MyApp),
+    SharedModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage,
-    LoginPage,
-    ProductPage
   ],
   providers: [
+    PROVIDERS, 
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthService,
     StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    SplashScreen]
 })
-export class AppModule {}
+export class AppModule { }

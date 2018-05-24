@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+        <ion-title>Add Product</ion-title>
+      </button>
+    </ion-navbar>
+ </ion-header>   
+<ion-content padding>
+  <!-- <div>
+    <img [src]="cardImage" />
+    <ion-fab right class="pop-in" [ngClass]="{'pop-out': fabGone}" style="top: 23rem;">
+      <button ion-fab mini (click)="scanCard()" color="dark"><ion-icon name="camera"></ion-icon></button>
+    </ion-fab>
+  </div> -->
+  <form [formGroup]="addForm">
+    <ion-item>
+      <ion-label>Product Name</ion-label>
+      <ion-input type="text"  formControlName='title' [(ngModel)]="card.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Salary</ion-label>
+      <ion-input type="number" min='0'  formControlName='price' [(ngModel)]="card.price"></ion-input>
+    </ion-item>
+     
+      <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-textarea  formControlName='des'  [(ngModel)]="card.des" autosize></ion-textarea>
+      </ion-item>
+  </form>
+      <button *ngIf='Updateflage' class="pull-right" ion-button (click)='updateProduct()'>Update</button>
+      <button *ngIf='!Updateflage' class="pull-right" ion-button (click)='addProduct()'>Add</button>
+  
+</ion-content>
+

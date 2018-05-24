@@ -1,13 +1,25 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { LoginPage } from './login';
+import { LoginListPage } from './login';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+
+import { HttpModule } from '@angular/http';
+import { AuthService } from '../../providers/authentication/authentication';
+import { FeedService } from '../../providers/feed/feed';
+
 
 @NgModule({
   declarations: [
-    LoginPage,
+    LoginListPage,
   ],
   imports: [
-    IonicPageModule.forChild(LoginPage),
+    HttpModule,
+    IonicPageModule.forChild(LoginListPage),
+
   ],
+  providers: [
+    AuthService, FeedService
+  ]
+
 })
-export class LoginPageModule {}
+export class LoginListPageModule { }
